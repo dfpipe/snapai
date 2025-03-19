@@ -25,7 +25,10 @@ def logo_demo():
     
     filep = st.file_uploader("Or you can upload a local image", type=["jpg", "jpeg", "png"])
     if filep:
-        image = filep.read()
+        import io
+        from PIL import Image
+        image = io.BytesIO(filep.read())
+        image = Image.open(image)
     
 
     def run_model(image):
